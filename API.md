@@ -11,7 +11,7 @@ Authorization: Bearer <token>
 
 ### 1. Criar Usuário
 
-**POST** `/users`
+**POST** `/users/`
 
 **Body:**
 ```json
@@ -36,7 +36,7 @@ Authorization: Bearer <token>
 
 ### 2. Autenticar Usuário
 
-**POST** `/sessions`
+**POST** `/users/sessions`
 
 **Body:**
 ```json
@@ -60,7 +60,7 @@ Authorization: Bearer <token>
 
 ### 3. Criar Refeição
 
-**POST** `/meals` (Requer autenticação)
+**POST** `/meals/` (Requer autenticação)
 
 **Headers:**
 ```
@@ -95,7 +95,7 @@ Authorization: Bearer <token>
 
 ### 4. Listar Todas as Refeições
 
-**GET** `/meals` (Requer autenticação)
+**GET** `/meals/` (Requer autenticação)
 
 **Headers:**
 ```

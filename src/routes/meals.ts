@@ -6,7 +6,7 @@ import { verifyJWT } from '../middleware/verify-jwt';
 export async function mealsRoutes(app: FastifyInstance) {
   app.addHook('onRequest', verifyJWT);
 
-  app.post('/meals', async (request, reply) => {
+  app.post('/', async (request, reply) => {
     const createMealSchema = z.object({
       name: z.string(),
       description: z.string(),
@@ -33,7 +33,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(201).send({ meal });
   });
 
-  app.get('/meals', async (request, reply) => {
+  app.get('/', async (request, reply) => {
     const userId = request.user.sub;
 
     const meals = await db('meals')
@@ -43,7 +43,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(200).send({ meals });
   });
 
-  app.get('/meals/:id', async (request, reply) => {
+  app.get('/:id', async (request, reply) => {
     const getMealParamsSchema = z.object({
       id: z.string().uuid(),
     });
@@ -65,7 +65,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(200).send({ meal });
   });
 
-  app.put('/meals/:id', async (request, reply) => {
+  app.put('/:id', async (request, reply) => {
     const updateMealParamsSchema = z.object({
       id: z.string().uuid(),
     });
@@ -109,7 +109,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(200).send({ meal: updatedMeal });
   });
 
-  app.delete('/meals/:id', async (request, reply) => {
+  app.delete('/:id', async (request, reply) => {
     const deleteMealParamsSchema = z.object({
       id: z.string().uuid(),
     });
@@ -133,7 +133,7 @@ export async function mealsRoutes(app: FastifyInstance) {
     return reply.status(204).send();
   });
 
-  app.get('/meals/metrics', async (request, reply) => {
+  app.get('/metrics', async (request, reply) => {
     const userId = request.user.sub;
 
     const totalMeals = await db('meals')

@@ -4,7 +4,7 @@ import { db } from '../database';
 import { hashPassword, comparePassword } from '../utils/hash';
 
 export async function usersRoutes(app: FastifyInstance) {
-  app.post('/users', async (request, reply) => {
+  app.post('/', async (request, reply) => {
     const createUserSchema = z.object({
       name: z.string(),
       email: z.string().email(),
