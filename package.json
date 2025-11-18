@@ -1,0 +1,35 @@
+{
+  "name": "daily-diet-api",
+  "version": "1.0.0",
+  "description": "API para controle de dieta diária",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "knex": "knex --knexfile src/database/knexfile.ts",
+    "migrate": "npm run knex migrate:latest",
+    "migrate:rollback": "npm run knex migrate:rollback"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cookie": "^9.2.0",
+    "@fastify/jwt": "^7.2.4",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.3",
+    "knex": "^2.5.1",
+    "pg": "^8.11.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.10.5",
+    "@types/pg": "^8.10.9",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
+
