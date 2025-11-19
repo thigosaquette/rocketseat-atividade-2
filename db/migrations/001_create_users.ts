@@ -1,11 +1,18 @@
 import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
+  const isSQLite = knex.client.config.client === 'sqlite' || knex.client.config.client === 'sqlite3';
+
   await knex.schema.createTable('users', (table) => {
-    table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
-    table.string('name').notNullable();
-    table.string('email').notNullable().unique();
-    table.string('password').notNullable();
+    if (isSQLite) {
+      table.text('id').primary();
+      table.text('session_id').notNullable();
+    } else {
+      table.uuid('id').primary();
+      table.uuid('session_id').notNullable();
+    }
+    table.text('name').notNullable();
+    table.text('email').notNullable().unique();
     table.timestamp('created_at').defaultTo(knex.fn.now()).notNullable();
     table.timestamp('updated_at').defaultTo(knex.fn.now()).notNullable();
   });

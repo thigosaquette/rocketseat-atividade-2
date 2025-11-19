@@ -1,6 +1,13 @@
+# Dependencies
 node_modules
-dist
+
+# Database
+db/*.db
+
+# Environment
 .env
-*.log
-.DS_Store
+.env.test
+
+# Build
+build
 

@@ -1,20 +1,11 @@
-import { config } from 'dotenv';
 import { app } from './app';
-
-config();
-
-const port = Number(process.env.PORT) || 3333;
+import { env } from './env';
 
 app
   .listen({
-    port,
-    host: '0.0.0.0',
+    port: env.PORT,
   })
   .then(() => {
-    console.log(`🚀 Server running on http://localhost:${port}`);
-  })
-  .catch((err: any) => {
-    console.error(err);
-    process.exit(1);
+    console.log('HTTP Server Running!');
   });
 
